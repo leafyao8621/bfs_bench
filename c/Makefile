@@ -4,10 +4,10 @@ OBJ = $(SRC:.c=.o)
 BIN = bench
 
 %.o: %.c
-	$(CPP) -g -c $< -o $@
+	$(CC) -O3 -c $< -o $@
 
 $(BIN): $(OBJ)
-	$(CPP) $(OBJ) -o $(BIN)
+	$(CC) $(OBJ) -o $(BIN)
 
 .PHONY: clean
 clean:

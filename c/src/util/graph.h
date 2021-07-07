@@ -14,6 +14,6 @@ void util_graph_initialize(struct Graph *g,
                            size_t edge);
 void util_graph_finalize(struct Graph *g);
 void util_graph_log(struct Graph *g, FILE *fout);
-void util_graph_bfs(struct Graph *g, size_t src, size_t dest, char verbose);
+char util_graph_bfs(struct Graph *g, size_t src, size_t dest, char verbose);
 
 #endif

@@ -39,7 +39,7 @@ bool Util::Graph::bfs(size_t src, size_t dest, bool verbose) {
                 for (i = this->al[i].prec; i != src; i = this->al[i].prec) {
                     std::cout << "<-\n" << i;
                 }
-                std::cout << '\n';
+                std::cout << "<-\n" << src << '\n';
             }
             return true;
         }
