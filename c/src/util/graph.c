@@ -16,7 +16,7 @@ struct Node {
     struct List idx;
 };
 
-static void push(struct List *l, size_t data) {
+static inline void push(struct List *l, size_t data) {
     struct ListNode *temp = malloc(sizeof(struct ListNode));
     temp->next = 0;
     temp->data = data;
@@ -29,7 +29,7 @@ static void push(struct List *l, size_t data) {
     l->back = temp;
 }
 
-static void pop(struct List *l) {
+static inline void pop(struct List *l) {
     if (!l->front) {
         return;
     }
