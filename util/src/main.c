@@ -4,32 +4,32 @@
 
 int main(int argc, char **argv) {
     if (argc != 7) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     unsigned seed = atoi(argv[1]);
     if (seed == -1) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     unsigned node = atoi(argv[2]);
     if (node == -1) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     unsigned edge = atoi(argv[3]);
     if (edge == -1) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     unsigned graph = atoi(argv[4]);
     if (graph == -1) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     unsigned query = atoi(argv[5]);
     if (query == -1) {
-        printf("please pass in seed, node, edge, graph, query, fout");
+        puts("please pass in seed, node, edge, graph, query, fout");
         return 1;
     }
     FILE *fout = strcmp("-", argv[6]) ?
