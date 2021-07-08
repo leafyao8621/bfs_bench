@@ -16,9 +16,11 @@ namespace Util {
             std::list<size_t> idx;
         };
     private:
-        std::vector<Node> al;
+        size_t node;
+        Node *al;
     public:
         Graph(std::ifstream &ifs, unsigned node, unsigned edge);
+        ~Graph();
         void log(std::ostream &os);
         bool bfs(size_t src, size_t dest, bool verbose);
     };

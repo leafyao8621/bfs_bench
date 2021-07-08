@@ -2,7 +2,8 @@
 #include "graph.h"
 
 Util::Graph::Graph(std::ifstream &ifs, unsigned node, unsigned edge) {
-    this->al.resize(node);
+    this->node = node;
+    this->al = new Node[node];
     for (int i = 0; i < edge; ++i) {
         size_t src, dest;
         ifs >> src >> dest;
@@ -11,11 +12,16 @@ Util::Graph::Graph(std::ifstream &ifs, unsigned node, unsigned edge) {
     }
 }
 
+Util::Graph::~Graph() {
+    delete[] this->al;
+}
+
 void Util::Graph::log(std::ostream &os) {
     size_t ci = 0;
-    for (auto &i : this->al) {
+    Node *iter = this->al;
+    for (size_t i = 0; i < this->node; ++i, ++iter) {
         os << ci << ":";
-        for (auto &j : i.idx) {
+        for (auto &j : iter->idx) {
             os << ' ' << j;
         }
         os << '\n';
@@ -26,8 +32,9 @@ void Util::Graph::log(std::ostream &os) {
 bool Util::Graph::bfs(size_t src, size_t dest, bool verbose) {
     std::list<size_t> queue;
     queue.push_back(src);
-    for (auto &i : this->al) {
-        i.visited = false;
+    Node *iter = this->al;
+    for (size_t i = 0; i < this->node; ++i, ++iter) {
+        iter->visited = false;
     }
     for (; !queue.empty(); ) {
         size_t cur = queue.front();
