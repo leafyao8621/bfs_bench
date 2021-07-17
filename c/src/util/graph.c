@@ -87,11 +87,12 @@ char util_graph_bfs(struct Graph *g, size_t src, size_t dest, char verbose) {
     struct List queue;
     queue.front = 0;
     queue.back = 0;
-    push(&queue, src);
     struct Node *iter = g->al;
     for (size_t i = 0; i < g->node; ++i, ++iter) {
         iter->visited = 0;
     }
+    g->al[src].visited = 1;
+    push(&queue, src);
     for (; queue.front;) {
         size_t cur = queue.front->data;
         pop(&queue);
@@ -108,11 +109,11 @@ char util_graph_bfs(struct Graph *g, size_t src, size_t dest, char verbose) {
             for (; queue.front; pop(&queue));
             return 1;
         }
-        g->al[cur].visited = 1;
         for (struct ListNode *i = g->al[cur].idx.front;
              i;
              i = i->next) {
             if (!g->al[i->data].visited) {
+                g->al[i->data].visited = 1;
                 g->al[i->data].prec = cur;
                 push(&queue, i->data);
             }

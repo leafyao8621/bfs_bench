@@ -102,10 +102,11 @@ contains
         graph_bfs = .false.
         nullify(queue%front)
         nullify(queue%back)
-        call push(queue, src)
         do i = 1, g%nodes
             g%al(i)%visited = .false.
         end do
+        g%al(src)%visited = .true. 
+        call push(queue, src)
         do while (associated(queue%front))
             cur = queue%front%data
             call pop(queue)
@@ -123,11 +124,11 @@ contains
                 end do
                 return
             end if
-            g%al(cur)%visited = .true.
             iter => g%al(cur)%idx%front
             do while (associated(iter))
                 if (.not. g%al(iter%data)%visited) then
                     call push(queue, iter%data)
+                    g%al(iter%data)%visited = .true.
                     g%al(iter%data)%prec = cur
                 end if
                 iter => iter%next

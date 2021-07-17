@@ -43,6 +43,7 @@ public class Graph {
         for (Node i : this.al) {
             i.visited = false;
         }
+        this.al[src].visited = true;
         queue.add(src);
         for (; !queue.isEmpty();) {
             int cur = queue.removeFirst();
@@ -55,10 +56,10 @@ public class Graph {
                 }
                 return true;
             }
-            this.al[cur].visited = true;
             for (int i : this.al[cur].idx) {
                 if (!this.al[i].visited) {
                     queue.add(i);
+                    this.al[i].visited = true;
                     this.al[i].prec = cur;
                 }
             }

@@ -31,11 +31,12 @@ void Util::Graph::log(std::ostream &os) {
 
 bool Util::Graph::bfs(size_t src, size_t dest, bool verbose) {
     std::list<size_t> queue;
-    queue.push_back(src);
     Node *iter = this->al;
     for (size_t i = 0; i < this->node; ++i, ++iter) {
         iter->visited = false;
     }
+    this->al[src].visited = true;
+    queue.push_back(src);
     for (; !queue.empty(); ) {
         size_t cur = queue.front();
         queue.pop_front();
@@ -50,9 +51,9 @@ bool Util::Graph::bfs(size_t src, size_t dest, bool verbose) {
             }
             return true;
         }
-        this->al[cur].visited = true;
         for (auto &i : this->al[cur].idx) {
             if (!this->al[i].visited) {
+                this->al[i].visited = true;
                 this->al[i].prec = cur;
                 queue.push_back(i);
             }
